@@ -6,7 +6,7 @@
 
     <meta-data
         android:name="com.parse.APPLICATION_ID"
-        android:value="@string/parse_app_id"></meta-data>
+        android:value="@string/parse_app_id" />
 
     <application
         android:name=".dagger2.ProntoShopApplication"
@@ -26,7 +26,8 @@
         <activity android:name=".firebase.LoginActivity" />
         <activity android:name=".firebase.ProfileActivity" />
         <activity android:name=".parse.ParseTestActivity" />
-        <activity android:name=".dagger2.DaggerActivity"></activity>
+        <activity android:name=".dagger2.DaggerActivity" />
+        <activity android:name=".rxjava.RxjavaActivity"></activity>
     </application>
 
 </manifest>

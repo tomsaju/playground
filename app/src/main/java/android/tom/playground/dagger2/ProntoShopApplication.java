@@ -27,7 +27,7 @@ public class ProntoShopApplication extends Application {
    /* Dagger creates the concrete implementation using the @ annotations that we supplied and adds
     the prefix to Dagger to them so our AppComponent which is an interface will now have a concrete
             implementation called DaggerAppComponent.*/
-    
+
     public AppComponent getAppComponent() {
         if (appComponent == null){
             appComponent = DaggerAppComponent.builder()

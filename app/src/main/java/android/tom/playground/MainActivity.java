@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.tom.playground.firebase.SignUpActivity;
 import android.tom.playground.parse.ParseTestActivity;
+import android.tom.playground.rxjava.RxjavaActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainList = (ListView) findViewById(R.id.homeList);
-        String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2"};
+        String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java"};
 
         ArrayAdapter listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,android.R.id.text1,indexList);
         mainList.setAdapter(listAdapter);
@@ -35,8 +36,10 @@ public class MainActivity extends AppCompatActivity {
                     case 3:
                         startActivity(new Intent(MainActivity.this, ParseTestActivity.class));
                         break;
-                    default:
+                    case 6:
+                        startActivity(new Intent(MainActivity.this, RxjavaActivity.class));
                         break;
+                    default:
                 }
                // Toast.makeText(MainActivity.this, "clicked", Toast.LENGTH_SHORT).show();
             }

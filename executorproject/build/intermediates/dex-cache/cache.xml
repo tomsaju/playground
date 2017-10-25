@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\play\playground\executorproject\libs\executor.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="e88d9fe9aa2eace21531fa4b11392758eeb0d2ef">
+        <dex dex="D:\play\playground\executorproject\build\intermediates\pre-dexed\androidTest\debug\executor_323817ac3405ce096ed8e342994938b71223d2ca.jar" />
+    </item>
+    <item
+        jar="D:\play\playground\executorproject\build\intermediates\exploded-aar\ExecutorLibrary\jars\classes.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="e77619161f7aa7bf7cfff12a4c0f91889b52bed8">
+        <dex dex="D:\play\playground\executorproject\build\intermediates\pre-dexed\androidTest\debug\intermediates-exploded-aar-ExecutorLibrary_0f465b304bd2ab6573846be02de7d0ce1d2ca72b.jar" />
+    </item>
+
+</items>

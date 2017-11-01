@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">Play Ground</string>
     <string name="parse_app_id">caef60b6-60e5-4fe1-a94f-7e1b35bebe8e</string>
+    <string name="xAxis">X Axis:</string>
+    <string name="yAxis">Y Axis:</string>
+    <string name="zAxis">Z Axis:</string>
+    <string name="heading">Heading:</string>
+    <string name="pitch">Pitch:</string>
+    <string name="roll">Roll:</string>
+    <string name="altitude">Altitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="latitude">Latitude:</string>
+    <string name="empty"></string>
+
+    <string name="cardinal_north">N</string>
+    <string name="cardinal_east">E</string>
+    <string name="cardinal_south">S</string>
+    <string name="cardinal_west">W</string>
+
 </resources>

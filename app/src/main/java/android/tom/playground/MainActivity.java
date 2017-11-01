@@ -1,6 +1,7 @@
 package android.tom.playground;
 
 import android.*;
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
@@ -8,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.tom.playground.augmentedreality.AugmentedCameraActivity;
+import android.tom.playground.augmentedreality.HorizonActivity;
 import android.tom.playground.firebase.SignUpActivity;
 import android.tom.playground.parse.ParseTestActivity;
 import android.tom.playground.rxjava.RxjavaActivity;
@@ -25,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainList = (ListView) findViewById(R.id.homeList);
-        String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java","Augmented Reality"};
+        String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java","Augmented Reality"
+        ,"Artificial Horizons (Might crash in 6.0 and above)"};
 
         ArrayAdapter listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,android.R.id.text1,indexList);
         mainList.setAdapter(listAdapter);
@@ -35,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
 
         }else {
 
+        }
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED){
+
+        }else{
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},124);
         }
         mainList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -52,6 +61,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 7:
                         startActivity(new Intent(MainActivity.this, AugmentedCameraActivity.class));
+                        break;
+                    case 8:
+                        startActivity(new Intent(MainActivity.this, HorizonActivity.class));
                         break;
                     default:
                 }

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.tom.playground.augmentedreality.AugmentedCameraActivity;
 import android.tom.playground.augmentedreality.HorizonActivity;
 import android.tom.playground.firebase.SignUpActivity;
+import android.tom.playground.helper.DBHelper;
 import android.tom.playground.parse.ParseTestActivity;
 import android.tom.playground.rxjava.RxjavaActivity;
 import android.view.View;
@@ -19,6 +20,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.facebook.stetho.Stetho;
+
 public class MainActivity extends AppCompatActivity {
     ListView mainList;
 
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Stetho.initializeWithDefaults(this);
+        DBHelper dbHelper = new DBHelper(this,DBHelper.DB_NAME,null,DBHelper.DB_VERSION);
         mainList = (ListView) findViewById(R.id.homeList);
         String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java","Augmented Reality"
         ,"Artificial Horizons (Might crash in 6.0 and above)"};

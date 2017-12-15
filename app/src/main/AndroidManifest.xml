@@ -36,7 +36,8 @@
         <activity
             android:name=".augmentedreality.AugmentedCameraActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".augmentedreality.HorizonActivity"></activity>
+        <activity android:name=".augmentedreality.HorizonActivity" />
+        <activity android:name=".notes.NoteEditorActivity"></activity>
     </application>
 
 </manifest>

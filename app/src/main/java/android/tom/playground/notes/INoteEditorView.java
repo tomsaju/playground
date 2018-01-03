@@ -5,4 +5,5 @@ package android.tom.playground.notes;
  */
 
 public interface INoteEditorView {
+    void onNoteInsertSuccess();
 }

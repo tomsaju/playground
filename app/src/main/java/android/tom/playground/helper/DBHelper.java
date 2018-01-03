@@ -78,4 +78,30 @@ public class DBHelper extends SQLiteOpenHelper {
 
         db.close();
     }
+
+
+    public Note getNoteForId(int id){
+        Note note = new Note();
+        db = this.getWritableDatabase();
+        Cursor cursor;
+
+        cursor = db.query(TABLE_NOTES,null,NOTE_ID+" = "+id,null,null,null,null);
+
+        if(cursor.getCount()>0){
+
+            while(cursor.moveToNext()){
+                String noteContent = cursor.getString(cursor.getColumnIndexOrThrow(NOTE_CONTENT));
+                String noteTitle = cursor.getString(cursor.getColumnIndexOrThrow(NOTE_TITLE));
+                String noteId = cursor.getString(cursor.getColumnIndexOrThrow(NOTE_ID));
+                String noteDate = cursor.getString(cursor.getColumnIndexOrThrow(NOTE_DATE));
+
+                note.setTitle(noteTitle);
+                note.setContent(noteContent);
+                note.setEdittedDate(noteDate);
+                note.setId(noteId);
+            }
+
+        }
+        return note;
+    }
 }

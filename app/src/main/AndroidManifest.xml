@@ -38,7 +38,8 @@
             android:screenOrientation="landscape" />
         <activity android:name=".augmentedreality.HorizonActivity" />
         <activity android:name=".notes.NoteEditorActivity" />
-        <activity android:name=".recommendation.RecommendedRead"></activity>
+        <activity android:name=".recommendation.RecommendedRead" />
+        <activity android:name=".notes.NoteListActivity"></activity>
     </application>
 
 </manifest>

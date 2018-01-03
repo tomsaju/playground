@@ -7,4 +7,5 @@ package android.tom.playground.notes;
 public interface INoteEditorController {
 
     Note getNoteForId(String id);
+    void saveNote(Note note);
 }

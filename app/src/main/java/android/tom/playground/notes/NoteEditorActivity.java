@@ -43,6 +43,23 @@ public class NoteEditorActivity extends AppCompatActivity implements INoteEditor
         getMenuInflater().inflate(R.menu.note_menu, menu);//Menu Resource, Menu
         return true;
     }
+
+
+    void saveNote(){
+    if(title.getText().toString()!=null&&!title.getText().toString().isEmpty()||
+        (content.getText().toString()!=null&&!content.getText().toString().isEmpty())){
+
+        String titleText = title.getText().toString();
+        String contentText = content.getText().toString();
+        Note noteToSave = new Note();
+        noteToSave.setTitle(titleText);
+        noteToSave.setContent(contentText);
+       // noteEditorController.saveNote();
+    }
+
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

@@ -39,7 +39,8 @@
         <activity android:name=".augmentedreality.HorizonActivity" />
         <activity android:name=".notes.NoteEditorActivity" />
         <activity android:name=".recommendation.RecommendedRead" />
-        <activity android:name=".notes.NoteListActivity"></activity>
+        <activity android:name=".notes.NoteListActivity" />
+        <activity android:name=".Retrofit.RetrofitActivity"></activity>
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.tom.playground.Retrofit.RetrofitActivity;
 import android.tom.playground.augmentedreality.AugmentedCameraActivity;
 import android.tom.playground.augmentedreality.HorizonActivity;
 import android.tom.playground.firebase.SignUpActivity;
@@ -22,6 +23,8 @@ import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 
+import retrofit2.Retrofit;
+
 public class MainActivity extends AppCompatActivity {
     ListView mainList;
 
@@ -33,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this,DBHelper.DB_NAME,null,DBHelper.DB_VERSION);
         mainList = (ListView) findViewById(R.id.homeList);
         String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java","Augmented Reality"
-        ,"Artificial Horizons (Might crash in 6.0 and above)"};
+        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit "};
 
         ArrayAdapter listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,android.R.id.text1,indexList);
         mainList.setAdapter(listAdapter);
@@ -69,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 8:
                         startActivity(new Intent(MainActivity.this, HorizonActivity.class));
+                        break;
+                    case 9:
+                        startActivity(new Intent(MainActivity.this, RetrofitActivity.class));
                         break;
                     default:
                 }

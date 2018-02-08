@@ -1,12 +1,17 @@
 package android.tom.playground.augmentedreality;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.hardware.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -51,7 +56,9 @@ public class AugmentedCameraActivity extends AppCompatActivity {
     TextView altitudeValue;
     TextView latitudeValue;
     TextView longitudeValue;
-
+    private Location lastLocation = null;
+    private static Location kakkanadLocation;
+    private double[] orientation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +92,11 @@ public class AugmentedCameraActivity extends AppCompatActivity {
             Toast.makeText(this, "provide permission and reload", Toast.LENGTH_SHORT).show();
             ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},124);
         }
+
+        kakkanadLocation = new Location("manual");
+        kakkanadLocation.setLatitude(10.01585);
+        kakkanadLocation.setLongitude(76.34187);
+        kakkanadLocation.setAltitude(19.5d);
     }
 
     SurfaceHolder.Callback SurfaceCallBack = new SurfaceHolder.Callback() {
@@ -92,6 +104,7 @@ public class AugmentedCameraActivity extends AppCompatActivity {
         public void surfaceCreated(SurfaceHolder surfaceHolder) {
         try{
             camera.setPreviewDisplay(previewHolder);
+
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -110,6 +123,7 @@ public class AugmentedCameraActivity extends AppCompatActivity {
                 camera.startPreview();
                 inPreview = true;
             }
+            tryDrawing(surfaceHolder);
         }
 
         @Override
@@ -120,6 +134,42 @@ public class AugmentedCameraActivity extends AppCompatActivity {
             camera = null;*/
         }
     };
+
+    private void tryDrawing(SurfaceHolder surfaceHolder) {
+        Canvas canvas = surfaceHolder.lockCanvas();
+        if (canvas == null) {
+            Log.e(TAG, "Cannot draw onto the canvas as it's null");
+        } else {
+            Log.e(TAG, "tryDrawing: drawing" );
+            drawMyStuff(canvas);
+            surfaceHolder.unlockCanvasAndPost(canvas);
+        }
+    }
+
+    private void drawMyStuff(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(Color.BLACK);
+
+        Camera.Parameters params = Camera.open().getParameters();
+        float verticalFOV = params.getVerticalViewAngle();
+        float horizontalFOV = params.getHorizontalViewAngle();
+
+        float dx = (float) ( (canvas.getWidth()/ horizontalFOV) * (Math.toDegrees(orientation[0])-curBearingToMW));
+        float dy = (float) ( (canvas.getHeight()/ verticalFOV) * Math.toDegrees(orientation[1])) ;
+
+// wait to translate the dx so the horizon doesn't get pushed off
+        canvas.translate(0.0f, 0.0f-dy);
+
+// make our line big enough to draw regardless of rotation and translation
+        canvas.drawLine(0f - canvas.getHeight(), canvas.getHeight()/2, canvas.getWidth()+canvas.getHeight(), canvas.getHeight()/2, paint);
+
+
+// now translate the dx
+        canvas.translate(0.0f-dx, 0.0f);
+
+// draw our point -- we've rotated and translated this to the right spot already
+        canvas.drawCircle(canvas.getWidth()/2, canvas.getHeight()/2, 8.0f, paint);
+    }
 
     @Override
     public void onResume() {
@@ -134,7 +184,16 @@ public class AugmentedCameraActivity extends AppCompatActivity {
         sensorManager.registerListener(sensorEventListener,sensorManager.getDefaultSensor(orientationSensor),sensorManager.SENSOR_DELAY_NORMAL);
         sensorManager.registerListener(sensorEventListener,sensorManager.getDefaultSensor(accelerometerSenesor),sensorManager.SENSOR_DELAY_NORMAL);
         if(ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)==PackageManager.PERMISSION_GRANTED) {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 2000, 2, locationListener);
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            Criteria criteria = new Criteria();
+            criteria.setAccuracy(Criteria.ACCURACY_FINE);
+            criteria.setPowerRequirement(Criteria.NO_REQUIREMENT);
+
+            String best = locationManager.getBestProvider(criteria, true);
+
+            Log.v(TAG,"Best provider: " + best);
+
+            locationManager.requestLocationUpdates(best, 50, 0, locationListener);
         }else{
             Toast.makeText(this, "provide permission and reload", Toast.LENGTH_SHORT).show();
             ActivityCompat.requestPermissions(this,new String[] {Manifest.permission.ACCESS_FINE_LOCATION},124);
@@ -143,9 +202,11 @@ public class AugmentedCameraActivity extends AppCompatActivity {
     }
 
 
+    private float curBearingToMW;
     LocationListener locationListener = new LocationListener() {
         @Override
         public void onLocationChanged(Location location) {
+            lastLocation = location;
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             altitude = location.getAltitude();
@@ -157,6 +218,9 @@ public class AugmentedCameraActivity extends AppCompatActivity {
             latitudeValue.setText(String.valueOf(latitude));
             longitudeValue.setText(String.valueOf(longitude));
             altitudeValue.setText(String.valueOf(altitude));
+
+             curBearingToMW = lastLocation.bearingTo(kakkanadLocation);
+            Log.d(TAG, "onLocationChanged: bearing"+curBearingToMW);
 
         }
 
@@ -177,6 +241,8 @@ public class AugmentedCameraActivity extends AppCompatActivity {
     };
 
 
+    private float[] cameraRotation;
+    private float[] rotation;
     final SensorEventListener sensorEventListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
@@ -193,6 +259,9 @@ public class AugmentedCameraActivity extends AppCompatActivity {
                 headingValue.setText(String.valueOf(headingAngle));
                 pitchValue.setText(String.valueOf(pitchAngle));
                 rollValue.setText(String.valueOf(rollAngle));
+                orientation[0] = sensorEvent.values[0];
+                orientation[1] = sensorEvent.values[1];
+                orientation[2] = sensorEvent.values[2];
 
             }else if(sensorEvent.sensor.getType()==Sensor.TYPE_ACCELEROMETER){
 
@@ -209,6 +278,10 @@ public class AugmentedCameraActivity extends AppCompatActivity {
                 zAxisValue.setText(String.valueOf(zAxis));
 
             }
+
+
+
+
         }
 
         @Override
@@ -249,4 +322,6 @@ public class AugmentedCameraActivity extends AppCompatActivity {
         }
         return(result);
     }
+
+
 }

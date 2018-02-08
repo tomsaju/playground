@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.Camera" />
 
@@ -40,7 +43,10 @@
         <activity android:name=".notes.NoteEditorActivity" />
         <activity android:name=".recommendation.RecommendedRead" />
         <activity android:name=".notes.NoteListActivity" />
-        <activity android:name=".Retrofit.RetrofitActivity"></activity>
+        <activity android:name=".Retrofit.RetrofitActivity" />
+        <activity android:name=".filehandling.FileHandlingActivity" />
+        <activity android:name=".filehandling.DownloadActivity" />
+        <activity android:name=".artuts.ArActivity"></activity>
     </application>
 
 </manifest>

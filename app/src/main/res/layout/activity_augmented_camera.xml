@@ -146,4 +146,6 @@
         android:layout_alignBottom="@+id/altitudeLabel"
         android:layout_alignLeft="@+id/longitudeValue"
         android:text="@string/empty" />
+
+    
 </RelativeLayout>

@@ -9,8 +9,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.tom.playground.Retrofit.RetrofitActivity;
+import android.tom.playground.artuts.ArActivity;
 import android.tom.playground.augmentedreality.AugmentedCameraActivity;
 import android.tom.playground.augmentedreality.HorizonActivity;
+import android.tom.playground.filehandling.DownloadActivity;
 import android.tom.playground.firebase.SignUpActivity;
 import android.tom.playground.helper.DBHelper;
 import android.tom.playground.parse.ParseTestActivity;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this,DBHelper.DB_NAME,null,DBHelper.DB_VERSION);
         mainList = (ListView) findViewById(R.id.homeList);
         String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java","Augmented Reality"
-        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit "};
+        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit ","file handling","AR in tutsplus"};
 
         ArrayAdapter listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,android.R.id.text1,indexList);
         mainList.setAdapter(listAdapter);
@@ -75,6 +77,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 9:
                         startActivity(new Intent(MainActivity.this, RetrofitActivity.class));
+                        break;
+                    case 10:
+                        startActivity(new Intent(MainActivity.this, DownloadActivity.class));
+                        break;
+                    case 11:
+                        startActivity(new Intent(MainActivity.this, ArActivity.class));
                         break;
                     default:
                 }

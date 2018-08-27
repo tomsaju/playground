@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.robotium.solo.Solo;
 
-import org.junit.Test;
 
 /**
  * Created by tom.saju on 10/12/2017.

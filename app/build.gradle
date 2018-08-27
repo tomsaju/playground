@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "android.tom.playground"
         minSdkVersion 19
@@ -43,8 +43,8 @@ dependencies {
     compile 'com.parse:parse-android:1.16.2'
 
     //dagger 2
-    apt 'com.google.dagger:dagger-compiler:2.2'
-    compile 'com.google.dagger:dagger:2.2'
+    compile 'com.google.dagger:dagger:2.0'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.0'
     provided 'javax.annotation:jsr250-api:1.0'
     compile 'com.google.code.gson:gson:2.6.2'
 
@@ -52,6 +52,7 @@ dependencies {
     //Core RxBinding library//
 
     compile 'com.jakewharton.rxbinding:rxbinding:0.4.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     //RxJava and RxAndroid dependencies//
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.0.5'
@@ -65,6 +66,11 @@ dependencies {
 
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:multidex:1.0.0'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 
 apply plugin: 'com.google.gms.google-services'
+repositories {
+    mavenCentral()
+}
+apply plugin: 'kotlin-android-extensions'

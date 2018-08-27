@@ -46,7 +46,11 @@
         <activity android:name=".Retrofit.RetrofitActivity" />
         <activity android:name=".filehandling.FileHandlingActivity" />
         <activity android:name=".filehandling.DownloadActivity" />
-        <activity android:name=".artuts.ArActivity"></activity>
+        <activity android:name=".artuts.ArActivity" />
+        <activity android:name=".constraintlayoutAnimation.ConstraintActivity" />
+        <activity android:name=".unicodetest.UnicodeActivity" />
+        <activity android:name=".unicodetest.SimActivity" />
+        <activity android:name=".voicerecog.VoiceSeachActivity"></activity>
     </application>
 
 </manifest>

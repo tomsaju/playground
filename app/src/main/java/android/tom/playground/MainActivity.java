@@ -1,6 +1,5 @@
 package android.tom.playground;
 
-import android.*;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,24 +11,26 @@ import android.tom.playground.Retrofit.RetrofitActivity;
 import android.tom.playground.artuts.ArActivity;
 import android.tom.playground.augmentedreality.AugmentedCameraActivity;
 import android.tom.playground.augmentedreality.HorizonActivity;
+import android.tom.playground.constraintlayoutAnimation.ConstraintActivity;
 import android.tom.playground.filehandling.DownloadActivity;
 import android.tom.playground.firebase.SignUpActivity;
 import android.tom.playground.helper.DBHelper;
 import android.tom.playground.parse.ParseTestActivity;
 import android.tom.playground.rxjava.RxjavaActivity;
+import android.tom.playground.unicodetest.SimActivity;
+import android.tom.playground.voicerecog.VoiceSeachActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
-
-import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
     ListView mainList;
 
+
+    //
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this,DBHelper.DB_NAME,null,DBHelper.DB_VERSION);
         mainList = (ListView) findViewById(R.id.homeList);
         String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java","Augmented Reality"
-        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit ","file handling","AR in tutsplus"};
+        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit ","file handling","AR in tutsplus","Constraint Animation","unicode","speech to text"};
 
         ArrayAdapter listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,android.R.id.text1,indexList);
         mainList.setAdapter(listAdapter);
@@ -83,6 +84,15 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 11:
                         startActivity(new Intent(MainActivity.this, ArActivity.class));
+                        break;
+                    case 12:
+                        startActivity(new Intent(MainActivity.this, ConstraintActivity.class));
+                        break;
+                    case 13:
+                        startActivity(new Intent(MainActivity.this, SimActivity.class));
+                        break;
+                    case 14:
+                        startActivity(new Intent(MainActivity.this, VoiceSeachActivity.class));
                         break;
                     default:
                 }

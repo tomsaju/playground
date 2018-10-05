@@ -50,7 +50,10 @@
         <activity android:name=".constraintlayoutAnimation.ConstraintActivity" />
         <activity android:name=".unicodetest.UnicodeActivity" />
         <activity android:name=".unicodetest.SimActivity" />
-        <activity android:name=".voicerecog.VoiceSeachActivity"></activity>
+        <activity android:name=".voicerecog.VoiceSeachActivity" />
+        <activity android:name=".gsontester.GsonTestActivity" />
+        <activity android:name=".gsontester.GsonJsonActivity" />
+        <activity android:name=".volleytest.VolleyActivity"></activity>
     </application>
 
 </manifest>

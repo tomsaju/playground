@@ -14,11 +14,13 @@ import android.tom.playground.augmentedreality.HorizonActivity;
 import android.tom.playground.constraintlayoutAnimation.ConstraintActivity;
 import android.tom.playground.filehandling.DownloadActivity;
 import android.tom.playground.firebase.SignUpActivity;
+import android.tom.playground.gsontester.GsonJsonActivity;
 import android.tom.playground.helper.DBHelper;
 import android.tom.playground.parse.ParseTestActivity;
 import android.tom.playground.rxjava.RxjavaActivity;
 import android.tom.playground.unicodetest.SimActivity;
 import android.tom.playground.voicerecog.VoiceSeachActivity;
+import android.tom.playground.volleytest.VolleyActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this,DBHelper.DB_NAME,null,DBHelper.DB_VERSION);
         mainList = (ListView) findViewById(R.id.homeList);
         String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java","Augmented Reality"
-        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit ","file handling","AR in tutsplus","Constraint Animation","unicode","speech to text"};
+        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit ","file handling","AR in tutsplus","Constraint Animation","unicode","speech to text","gson test","volley"};
 
         ArrayAdapter listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,android.R.id.text1,indexList);
         mainList.setAdapter(listAdapter);
@@ -93,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 14:
                         startActivity(new Intent(MainActivity.this, VoiceSeachActivity.class));
+                        break;
+                    case 15:
+                        startActivity(new Intent(MainActivity.this, GsonJsonActivity.class));
+                        break;
+                    case 16:
+                        startActivity(new Intent(MainActivity.this, VolleyActivity.class));
                         break;
                     default:
                 }

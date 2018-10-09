@@ -53,7 +53,8 @@
         <activity android:name=".voicerecog.VoiceSeachActivity" />
         <activity android:name=".gsontester.GsonTestActivity" />
         <activity android:name=".gsontester.GsonJsonActivity" />
-        <activity android:name=".volleytest.VolleyActivity"></activity>
+        <activity android:name=".volleytest.VolleyActivity" />
+        <activity android:name=".collapsibletoolbar.Main2Activity" android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
     </application>
 
 </manifest>

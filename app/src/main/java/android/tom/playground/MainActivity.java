@@ -11,6 +11,7 @@ import android.tom.playground.Retrofit.RetrofitActivity;
 import android.tom.playground.artuts.ArActivity;
 import android.tom.playground.augmentedreality.AugmentedCameraActivity;
 import android.tom.playground.augmentedreality.HorizonActivity;
+import android.tom.playground.collapsibletoolbar.Main2Activity;
 import android.tom.playground.constraintlayoutAnimation.ConstraintActivity;
 import android.tom.playground.filehandling.DownloadActivity;
 import android.tom.playground.firebase.SignUpActivity;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this,DBHelper.DB_NAME,null,DBHelper.DB_VERSION);
         mainList = (ListView) findViewById(R.id.homeList);
         String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java","Augmented Reality"
-        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit ","file handling","AR in tutsplus","Constraint Animation","unicode","speech to text","gson test","volley"};
+        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit ","file handling","AR in tutsplus","Constraint Animation","unicode","speech to text","gson test","volley","collapsible toolbar"};
 
         ArrayAdapter listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,android.R.id.text1,indexList);
         mainList.setAdapter(listAdapter);
@@ -101,6 +102,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 16:
                         startActivity(new Intent(MainActivity.this, VolleyActivity.class));
+                        break;
+                    case 17:
+                        startActivity(new Intent(MainActivity.this, Main2Activity.class));
                         break;
                     default:
                 }

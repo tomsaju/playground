@@ -18,6 +18,7 @@ import android.tom.playground.firebase.SignUpActivity;
 import android.tom.playground.gsontester.GsonJsonActivity;
 import android.tom.playground.helper.DBHelper;
 import android.tom.playground.parse.ParseTestActivity;
+import android.tom.playground.recyclerviewfilter.RecyclerFilterActivity;
 import android.tom.playground.rxjava.RxjavaActivity;
 import android.tom.playground.unicodetest.SimActivity;
 import android.tom.playground.voicerecog.VoiceSeachActivity;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper dbHelper = new DBHelper(this,DBHelper.DB_NAME,null,DBHelper.DB_VERSION);
         mainList = (ListView) findViewById(R.id.homeList);
         String[] indexList = new String[]{"sensor fusion","butterknife","Firebase","Parse Buddy","Dagger 2","Accesibility tests","Rx Java","Augmented Reality"
-        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit ","file handling","AR in tutsplus","Constraint Animation","unicode","speech to text","gson test","volley","collapsible toolbar"};
+        ,"Artificial Horizons (Might crash in 6.0 and above)","Retrofit ","file handling","AR in tutsplus","Constraint Animation","unicode","speech to text","gson test","volley","collapsible toolbar","Recyclerview Filter"};
 
         ArrayAdapter listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,android.R.id.text1,indexList);
         mainList.setAdapter(listAdapter);
@@ -105,6 +106,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 17:
                         startActivity(new Intent(MainActivity.this, Main2Activity.class));
+                        break;
+                    case 18:
+                        startActivity(new Intent(MainActivity.this, RecyclerFilterActivity.class));
                         break;
                     default:
                 }
